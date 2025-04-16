@@ -8,16 +8,23 @@ pipeline {
             }
         }
 
+        stage('Verify Docker') {
+            steps {
+                bat 'docker --version'
+                bat 'docker info'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
-                bat 'dir' // Windows equivalent of ls -l
-                bat 'docker build -t my-docker-webapp .' // Build Docker image from root
+                bat 'dir'
+                bat 'docker build -t my-docker-webapp .'
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                bat 'docker run -d -p 8081:80 my-docker-webapp' // Run container in detached mode
+                bat 'docker run -d -p 8081:80 my-docker-webapp'
             }
         }
     }
