@@ -10,14 +10,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'ls -l' // To confirm files are there
+                sh 'ls -l' // Confirm files are present
                 sh 'docker build -t my-docker-webapp .' // Build Docker image from root
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 8081:80 my-docker-webapp' // Run container
+                sh 'docker run -d -p 8081:80 my-docker-webapp' // Run container in detached mode
             }
         }
     }
